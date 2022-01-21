@@ -1,0 +1,205 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h2 {
+            margin-left: 53%;
+        }
+
+        #glowny {
+            width: 1000px;
+            position: relative;
+            left: 35%;
+            margin-top: 30px;
+        }
+
+        img {
+            float: left;
+            width: 130px;
+            height: 130px;
+        }
+
+        img:nth-child(4n+1) {
+            clear: both;
+        }
+
+        #menu {
+            position: absolute;
+            left: 35%;
+        }
+
+        #myProgress {
+            position: relative;
+            width: 600px;
+            background-color: #DCDCDC;
+            left: 31.5%;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        #myBar {
+            width: 600px;
+            height: 30px;
+            background-color: #50BA54;
+            border-radius: 10px 10px 10px 10px;
+        }
+    </style>
+    <script>
+        /*
+         var glowny=document.getElementById("glowny");
+                var menu=document.getElementById("menu");
+                var tekst=document.getElementById("txt");
+        
+        function trzydziescia(){
+                 glowny.style.visibility='visible';
+                 menu.style.visibility='hidden';
+                 tekst.innerHTML=" 30[s] ";
+                 console.log(30);
+            };
+            function minuta(){
+                menu.style.visibility='hidden';
+                menu.style.visibility='hidden';
+                tekst.innerHTML=" 60[s] "
+            }
+            function minuta_trzydziesci(){
+                menu.style.style.visibility='hidden';
+                menu.style.style.visibility='hidden';
+                tekst.innerHTML=" 90[s] "
+            }
+
+
+*/
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        var timeleft = 30;
+
+        var downloadTimer = setInterval(function () {
+            timeleft--;
+            document.getElementById("txt").textContent = "MEMORY " + timeleft + "[s]";
+            if (timeleft <= 0)
+                clearInterval(downloadTimer);
+
+
+        }, 1000);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = 100;
+            var id = setInterval(frame, 300);
+            function frame() {
+                if (width <= 100) {
+                    width--;
+                    elem.style.width = width + '%';
+                    if (width < 40) {
+                        elem.style.backgroundColor = "#E63939";
+                    }
+                } else {
+                    clearInterval(id);
+
+                }
+
+            }
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        function init() {
+
+
+            var el = document.getElementsByTagName("img");
+            tab = ["1.jpg", "1.jpg", "2.jpg", "2.jpg", "3.jpg", "3.jpg", "4.jpg", "4.jpg", "5.jpg", "5.jpg", "6.jpg", "6.jpg", "7.jpg", "7.jpg", "8.jpg", "8.jpg"]
+
+            for (var i = 0; i < tab.length; i++) {
+                var j = Math.floor(Math.random() * tab.length);
+                var temp = tab[i];
+                tab[i] = tab[j];
+                tab[j] = temp;
+            }
+            var ulozone = [];
+            var pomoc = [];
+          
+
+            var f = function (iii) {
+                return function () {
+                  ;
+
+                    el[iii].src = "img2/" + tab[iii];
+                
+                        pomoc.push(this);
+                    console.log(pomoc);
+
+                    if (pomoc.length == 2) {
+                        if (pomoc[0].src == pomoc[1].src) {
+                            console.log("same");
+                            el[iii].src = "img2/" + tab[iii];
+                            ulozone.push(pomoc[0]);
+                            ulozone.push(pomoc[1]);
+                            pomoc = [];
+                        } else {
+                            console.log("różne")
+                            setTimeout(function () {
+                                pomoc[0].src = "img2/0.jpg";
+                                pomoc[1].src = "img2/0.jpg";
+                                pomoc = [];
+                            }, 450);
+
+                        }
+
+                    }
+                    if (ulozone.length > 15) {
+                        window.alert("Wygrana")
+                    }
+                    console.log(pomoc);
+
+                }
+            }
+
+            for (var i = 0; i < el.length; i++) {
+                el[i].onclick = f(i);
+
+            }
+
+        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+</head>
+
+<body onload="init(), move()">
+    <h2 id="txt">MEMORY 30[s]</h2>
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
+    <div id="glowny">
+        <img src="img2/0.jpg" id="0">
+        <img src="img2/0.jpg" id="1">
+        <img src="img2/0.jpg" id="2">
+        <img src="img2/0.jpg" id="3">
+        <img src="img2/0.jpg" id="4">
+        <img src="img2/0.jpg" id="5">
+        <img src="img2/0.jpg" id="6">
+        <img src="img2/0.jpg" id="7">
+        <img src="img2/0.jpg" id="8">
+        <img src="img2/0.jpg" id="9">
+        <img src="img2/0.jpg" id="10">
+        <img src="img2/0.jpg" id="11">
+        <img src="img2/0.jpg" id="12">
+        <img src="img2/0.jpg" id="13">
+        <img src="img2/0.jpg" id="14">
+        <img src="img2/0.jpg" id="15">
+    </div>
+    <!--
+    <div id="menu">
+    <img src="img2/czolowa.png" alt="" usemap="#Map" style="width:520px;height:520px;"/>
+    <map name="Map" id="Map">
+    <area alt="" title="" href="" onclick="trzydziesci();" shape="poly" coords="41,41,68,151,352,50" />
+    <area alt="" title="" href="" onclick="minuta();" shape="poly" coords="101,218,364,232,339,110" />
+    <area alt="" title="" href="" onclick="minuta_trzydziesci();" shape="poly" coords="123,268,113,381,368,298" />
+</map>
+    </div>
+-->
+</body>
+
+</html>
